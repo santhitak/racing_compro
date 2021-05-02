@@ -13,6 +13,7 @@
 html {
   line-height: 1.15;
   scroll-behavior: smooth;
+
 }
 
 body {
@@ -88,6 +89,18 @@ h1 {
 }
 
 #link:hover{
+  color: var(--emerald);
+}
+
+#next{
+  color: var(--mustard);
+  position: relative;
+  left: 100%;
+  text-decoration: none;
+  transition-delay: 0.02s;
+}
+
+#next:hover{
   color: var(--emerald);
 }
 
