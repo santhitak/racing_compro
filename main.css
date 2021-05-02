@@ -1,3 +1,4 @@
+
 *{
   font-family: 'Kanit', sans-serif;
   /* CSS HEX */
@@ -53,15 +54,14 @@ h1 {
 
 .main_title{
   color: var(--orange);
+  font-family: 'Press Start 2P';
   font-weight: 700;
   margin: 0;
-  margin-left: .5em;
+  margin-left: .60em;
   grid-column: 1;
   grid-row: 1;
   z-index: 1;
-  font-family: 'Zen Dots', sans-serif;
-  font-size: 6em;
-  text-transform: uppercase;
+  font-size: 5.4em;
   animation: glow 1s ease-in-out infinite alternate;
 }
 
@@ -375,6 +375,7 @@ nav#dot-nav.red a:first-child {
   }
 
 .footer-dark h3 {
+  font-family: 'Kanit', sans-serif;
 	margin-top:0;
 	margin-bottom:12px;
 	font-weight: 600;
@@ -382,6 +383,7 @@ nav#dot-nav.red a:first-child {
   }
 
 .footer-dark ul {
+  font-family: 'Kanit', sans-serif;
 	padding:0;
 	list-style:none;
 	line-height:1.6;
@@ -418,19 +420,43 @@ nav#dot-nav.red a:first-child {
 	box-sizing: border-box;
 }
 
-/* section style page */
+/* extention style page */
 
 .goupbtn{
-
   position: absolute;
   width: 20px;
   height: 20px;
-  color:rgba(36, 36, 36, 0.527);
+  color:rgba(206, 206, 206, 0.527);
   background-color: transparent;
   bottom: -1575px;
   right: 70px;
 }
 .goupbtn :hover{
-  color:rgba(200, 230, 213, 0.842);
+  color:rgba(214, 214, 214, 0.842);
 }
 
+/* section3 */
+
+.h_play{
+  position: relative;
+  font-family: 'Press Start 2P';
+  text-align: center;
+  color: var(--black);
+  font-weight: 600;
+  font-size: 3em;
+  text-shadow: 0.06rem 0 0.06rem var(--orange), -0.125rem 0 0.06rem var(--mustard);
+  letter-spacing: 0.125em;
+  animation-duration: 0.2s;
+  animation-name: textflicker;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes textflicker {
+  from {
+    text-shadow: 1px 0 0 var(--orange), -2px 0 0 var(--mustard);
+  }
+  to {
+    text-shadow: 2px 0.5px 2px var(--orange), -1px -0.5px 2px var(--mustard);
+  }
+}
