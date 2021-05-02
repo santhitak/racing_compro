@@ -430,19 +430,34 @@ nav#dot-nav.red a:first-child {
   display: block;
 }
 
-.innerblock{
-  width: 50%;
+.flagblock{
+  width: 12%;
   height: 100%;
-  margin-left: 5%;
+  float: left;
+  margin-left: 3%;
+  display: inline-block;
+}
+
+#flag{
+  fill: var(--white);
+  transform-style: preserve-3d;
+  transform-origin: center;
+  transform: rotateY(10deg);
+}
+
+.innerblock{
+  width: 40%;
+  height: 100%;
+  margin-left: 1em;
   display: inline-block;
   vertical-align: middle;
 }
 
 .contact_block{
-  width: 40%;
+  width: 30%;
   height: 30%;
-  display: inline-block;
   float: right;
+  display: inline-block;
   margin-right: 5%;
   margin-top: 1em;
 }
