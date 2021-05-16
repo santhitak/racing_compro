@@ -3,15 +3,14 @@
   font-family: 'Kanit', sans-serif;
   /* CSS HEX */
   --black: #121420ff;
-  --orange: #FD4238ff;
-  --purple: #9560FFff;
-  --emerald: #56C988ff;
-  --mustard: #FFD543ff;
-  --white: #FBFDFCff;
+  --orange: #fd4238;
+  --purple: #9560ff;
+  --emerald: #56c988;
+  --mustard: rgb(255, 213, 67);
+  --white: #fbfdfc;
 }
 
 html {
-  line-height: 1.15;
   scroll-behavior: smooth;
 
 }
@@ -22,6 +21,7 @@ body {
 
 #page1{
   background-color: var(--black);
+  padding-top: 1em;
 }
 
 #page2{
@@ -83,10 +83,37 @@ h1 {
   color: var(--orange);
   font-size: 2.5em;
 }
+.about a{
+  transition: .2s linear;
+}
+
+.about a:hover{
+  font-size: 50%;
+}
 
 .about p{
+  line-height: 2.2;
   color: var(--white);
-  font-size: .4em;
+  font-size: .45em;
+}
+
+.car{
+  width: 150px;
+  height: 150px;
+  position: inherit;
+  margin: auto;
+  padding-top: 1.2em;
+  border-radius: 50%;
+}
+
+.car svg{
+  transition: .3s linear;
+  transform: rotate(90deg);
+}
+
+.car svg:hover{
+  transform: rotate(-90deg);
+  width: 110%;
 }
 
 figcaption,
