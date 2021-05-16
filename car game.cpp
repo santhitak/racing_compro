@@ -24,6 +24,7 @@ char car[4][4] = { ' ','*','*',' ',
 					
 int carPos = WIN_WIDTH/2;
 int score = 0; 
+int deathcount = 0;
 
 void gotoxy(int x, int y){
 	CursorPosition.X = x;
@@ -91,8 +92,16 @@ void eraseCar(){
 }
  
 int collision(){
-	if( enemyY[0]+4 >= 23 ){
+	if( enemyY[0]+4 >= 23 || enemyY[0]+3 >= 23 || enemyY[0]+2 >= 23 || enemyY[0]+1 >= 23){
 		if( enemyX[0] + 4 - carPos >= 0 && enemyX[0] + 4 - carPos < 9  ){
+			resetEnemy(0);
+			return 1;
+		}
+	}
+	
+	if( enemyY[1]+4 >= 23 || enemyY[1]+3 >= 23 || enemyY[1]+2 >= 23 || enemyY[1]+1 >= 23){
+		if( enemyX[1] + 4 - carPos >= 0 && enemyX[1] + 4 - carPos < 9  ){
+			resetEnemy(1);
 			return 1;
 		}
 	}
@@ -111,6 +120,9 @@ void gameover(){
 }
 void updateScore(){
 	gotoxy(WIN_WIDTH + 7, 5);cout<<"Score: "<<score<<endl;
+}
+void updateDead(){
+	gotoxy(WIN_WIDTH + 7, 6);cout<<"Life: "<<2-deathcount<<endl;
 }
 
 void instructions(){
@@ -132,6 +144,7 @@ void instructions(){
 void play(){
 	carPos = -1 + WIN_WIDTH/2;
 	score = 0;
+	deathcount = 0;
 	enemyFlag[0] = 1;
 	enemyFlag[1] = 0;
 	enemyY[0] = enemyY[1] = 1;
@@ -139,12 +152,13 @@ void play(){
 	system("cls"); 
 	drawBorder(); 
 	updateScore();
+	updateDead();
 	genEnemy(0);
 	genEnemy(1);
 	
 	gotoxy(WIN_WIDTH + 7, 2);cout<<"Car Game";
 	gotoxy(WIN_WIDTH + 6, 4);cout<<"----------";
-	gotoxy(WIN_WIDTH + 6, 6);cout<<"----------";
+	gotoxy(WIN_WIDTH + 6, 7);cout<<"----------";
 	gotoxy(WIN_WIDTH + 7, 12);cout<<"Control ";
 	gotoxy(WIN_WIDTH + 7, 13);cout<<"-------- ";
 	gotoxy(WIN_WIDTH + 2, 14);cout<<" A Key - Left";
@@ -177,8 +191,12 @@ void play(){
 		drawEnemy(0); 
 		drawEnemy(1); 
 		if( collision() == 1  ){
-			gameover();
-			return;
+			deathcount++;
+			updateDead();
+			if (deathcount >= 2){
+				gameover();
+				return;
+			}
 		} 
 		Sleep(50);
 		eraseCar();
