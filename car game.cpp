@@ -142,7 +142,7 @@ void instructions(){
 	system("cls");
 	cout<<"\n\n\n\n\n\t\t\t\t\t\t\tInstructions";
 	cout<<"\n\t\t\t\t\t\t---------------------------";
-	cout<<"\n\t\t\t\t   ----Avoid Cars by moving left or right in 120 sec.---- ";
+	cout<<"\n\t\t\t\t   ----Avoid Cars by moving left or right in 300 sec.---- ";
 	cout<<"\n\t\t\t\t\t\t-You have only 2 life.- ";
 	cout<<"\n\n\t\t\t\t\t\t Press 'a' to move left";
 	cout<<"\n\t\t\t\t\t\t Press 'd' to move right";
@@ -211,7 +211,7 @@ void play(){
 				return;
 			}
 		} 
-		if( updateScore() == 120)
+		if( updateScore() == 300)
 		{
 			gamewin();
 			return;
