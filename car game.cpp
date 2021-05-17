@@ -107,6 +107,17 @@ int collision(){
 	}
 	return 0;
 } 
+void gamewin(){
+	system("cls");
+	cout<<endl;
+	cout<<"\n\n\n\t\t\t\t--------------------------"<<endl;
+	cout<<"\t\t\t\t--------- You Win --------"<<endl;
+	cout<<"\t\t\t\t--------------------------"<<endl<<endl;
+	cout<<"\t\t\t\t----- congratulations "<<score<<" ----"<<endl;
+	cout<<"\t\t\t\t--------------------------"<<endl<<endl;
+	cout<<"\t\t\t\tPress any key to go back to menu.";
+	getch();
+}
 void gameover(){
 	system("cls");
 	cout<<endl;
@@ -118,8 +129,9 @@ void gameover(){
 	cout<<"\t\t\t\tPress any key to go back to menu.";
 	getch();
 }
-void updateScore(){
+int updateScore(){
 	gotoxy(WIN_WIDTH + 7, 5);cout<<"Score: "<<score<<endl;
+	return score;
 }
 void updateDead(){
 	gotoxy(WIN_WIDTH + 7, 6);cout<<"Life: "<<2-deathcount<<endl;
@@ -130,7 +142,8 @@ void instructions(){
 	system("cls");
 	cout<<"\n\n\n\n\n\t\t\t\t\t\t\tInstructions";
 	cout<<"\n\t\t\t\t\t\t---------------------------";
-	cout<<"\n\t\t\t\t\t----Avoid Cars by moving left or right.---- ";
+	cout<<"\n\t\t\t\t   ----Avoid Cars by moving left or right in 120 sec.---- ";
+	cout<<"\n\t\t\t\t\t\t-You have only 2 life.- ";
 	cout<<"\n\n\t\t\t\t\t\t Press 'a' to move left";
 	cout<<"\n\t\t\t\t\t\t Press 'd' to move right";
 	cout<<"\n\n\t\t\t\t\t\t OR";
@@ -197,6 +210,11 @@ void play(){
 				gameover();
 				return;
 			}
+		} 
+		if( updateScore() == 120)
+		{
+			gamewin();
+			return;
 		} 
 		Sleep(50);
 		eraseCar();
