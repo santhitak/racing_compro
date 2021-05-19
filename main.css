@@ -2,7 +2,7 @@
 *{
   font-family: 'Kanit', sans-serif;
   /* CSS HEX */
-  --black: #121420ff;
+  --black: #121420;
   --orange: #fd4238;
   --purple: #9560ff;
   --emerald: #56c988;
@@ -19,8 +19,8 @@ body {
 }
 
 #page1{
-  background-color: var(--black);
   padding-top: 1em;
+  background-image: url("firstpageBG.JPG") ;
 }
 
 #page2{
@@ -113,6 +113,26 @@ h1 {
 .car svg:hover{
   transform: rotate(-90deg);
   width: 110%;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(35, 38, 54);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(68, 74, 99);
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(71, 80, 116);
 }
 
 figcaption,
@@ -441,7 +461,7 @@ nav#dot-nav.red a:first-child {
   height: 20px;
   color:rgba(206, 206, 206, 0.527);
   background-color: transparent;
-  bottom: -1575px;
+  bottom: -1555px;
   right: 70px;
 }
 .goupbtn :hover{
