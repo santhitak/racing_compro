@@ -133,8 +133,16 @@ int updateScore(){
 	gotoxy(WIN_WIDTH + 7, 5);cout<<"Score: "<<score<<endl;
 	return score;
 }
-void updateDead(){
+void easyupdateDead(){
+	gotoxy(WIN_WIDTH + 7, 6);cout<<"Life: "<<3-deathcount<<endl;
+}
+
+void normalupdateDead(){
 	gotoxy(WIN_WIDTH + 7, 6);cout<<"Life: "<<2-deathcount<<endl;
+}
+
+void hardupdateDead(){
+	gotoxy(WIN_WIDTH + 7, 6);cout<<"Life: "<<1-deathcount<<endl;
 }
 
 void instructions(){
@@ -142,8 +150,7 @@ void instructions(){
 	system("cls");
 	cout<<"\n\n\n\n\n\t\t\t\t\t\t\tInstructions";
 	cout<<"\n\t\t\t\t\t\t---------------------------";
-	cout<<"\n\t\t\t\t   ----Avoid Cars by moving left or right in 300 sec.---- ";
-	cout<<"\n\t\t\t\t\t\t-You have only 2 life.- ";
+	cout<<"\n\t\t\t\t\t----Avoid Cars by moving left or right---- ";
 	cout<<"\n\n\t\t\t\t\t\t Press 'a' to move left";
 	cout<<"\n\t\t\t\t\t\t Press 'd' to move right";
 	cout<<"\n\n\t\t\t\t\t\t OR";
@@ -154,7 +161,25 @@ void instructions(){
 	getch();
 }
 
-void play(){
+void gameinstructions(){
+	
+	system("cls");
+	cout<<"\n\n\n\n\n\t\t\t\t\t\t\tHow to play";
+	cout<<"\n\t\t\t\t\t\t---------------------------";
+	cout<<"\n\t\t\t\t\tEasy mode: 3 times crash, win when the score is 120";
+	cout<<"\n\t\t\t\t\tNormal mode: 2 times crash, win when the score is 120";
+	cout<<"\n\t\t\t\t\tHard mode: 1 time crash, win when the score is 120";
+	cout<<"\n\n\t\t\t\t\t\t Press 'a' to move left";
+	cout<<"\n\t\t\t\t\t\t Press 'd' to move right";
+	cout<<"\n\n\t\t\t\t\t\t OR";
+	cout<<"\n\n\t\t\t\t\t\t Press '4' to move left";
+	cout<<"\n\t\t\t\t\t\t Press '6' to move right";
+	cout<<"\n\t\t\t\t\t\t Press 'escape' to exit";
+	cout<<"\n\n\t\t\t\t\t----Press any key to go back to menu----";
+	getch();
+}
+
+void easymode(){
 	carPos = -1 + WIN_WIDTH/2;
 	score = 0;
 	deathcount = 0;
@@ -165,11 +190,11 @@ void play(){
 	system("cls"); 
 	drawBorder(); 
 	updateScore();
-	updateDead();
+	easyupdateDead();
 	genEnemy(0);
 	genEnemy(1);
 	
-	gotoxy(WIN_WIDTH + 7, 2);cout<<"Car Game";
+	gotoxy(WIN_WIDTH + 7, 3);cout<<" Go Kart ";
 	gotoxy(WIN_WIDTH + 6, 4);cout<<"----------";
 	gotoxy(WIN_WIDTH + 6, 7);cout<<"----------";
 	gotoxy(WIN_WIDTH + 7, 12);cout<<"Control ";
@@ -205,13 +230,13 @@ void play(){
 		drawEnemy(1); 
 		if( collision() == 1  ){
 			deathcount++;
-			updateDead();
-			if (deathcount >= 2){
+			easyupdateDead();
+			if (deathcount >= 3){
 				gameover();
 				return;
 			}
 		} 
-		if( updateScore() == 300)
+		if( updateScore() == 120)
 		{
 			gamewin();
 			return;
@@ -242,6 +267,216 @@ void play(){
 			updateScore();
 		}
 	}
+}
+
+void normalmode()
+{
+	carPos = -1 + WIN_WIDTH/2;
+	score = 0;
+	deathcount = 0;
+	enemyFlag[0] = 1;
+	enemyFlag[1] = 0;
+	enemyY[0] = enemyY[1] = 8;
+	  
+	system("cls"); 
+	drawBorder(); 
+	updateScore();
+	normalupdateDead();
+	genEnemy(0);
+	genEnemy(1);
+	
+	gotoxy(WIN_WIDTH + 7, 3);cout<<" Go Kart ";
+	gotoxy(WIN_WIDTH + 6, 4);cout<<"----------";
+	gotoxy(WIN_WIDTH + 6, 7);cout<<"----------";
+	gotoxy(WIN_WIDTH + 7, 12);cout<<"Control ";
+	gotoxy(WIN_WIDTH + 7, 13);cout<<"-------- ";
+	gotoxy(WIN_WIDTH + 2, 14);cout<<" A Key - Left";
+	gotoxy(WIN_WIDTH + 2, 15);cout<<" D Key - Right";
+	gotoxy(WIN_WIDTH + 9, 17);cout<<" OR ";
+	gotoxy(WIN_WIDTH + 2, 19);cout<<" 4 NumKey - Left";
+	gotoxy(WIN_WIDTH + 2, 20);cout<<" 6 NumKey - Right"; 
+	
+	gotoxy(18, 5);cout<<"Press any key to start";
+	getch();
+	gotoxy(18, 5);cout<<"                      ";
+	
+	while(1){
+		if(kbhit()){
+			char ch = getch();
+			if( ch=='a' || ch=='A' || ch=='4'){
+				if( carPos > 18 )
+					carPos -= 4;
+			}
+			if( ch=='d' || ch=='D' || ch=='6' ){
+				if( carPos < 50 )
+					carPos += 4;
+			} 
+			if(ch==27){
+				break;
+			}
+		} 
+		
+		drawCar(); 
+		drawEnemy(0); 
+		drawEnemy(1); 
+		if( collision() == 1  ){
+			deathcount++;
+			normalupdateDead();
+			if (deathcount >= 2){
+				gameover();
+				return;
+			}
+		} 
+		if( updateScore() == 120)
+		{
+			gamewin();
+			return;
+		} 
+		Sleep(30);
+		eraseCar();
+		eraseEnemy(0);
+		eraseEnemy(1);   
+		
+		if( enemyY[0] == 10 )
+			if( enemyFlag[1] == 0 )
+				enemyFlag[1] = 1;
+		
+		if( enemyFlag[0] == 1 )
+			enemyY[0] += 1;
+		
+		if( enemyFlag[1] == 1 )
+			enemyY[1] += 1;
+		 
+		if( enemyY[0] > SCREEN_HEIGHT-4 ){
+			resetEnemy(0);
+			score++;
+			updateScore();
+		}
+		if( enemyY[1] > SCREEN_HEIGHT-4 ){
+			resetEnemy(1);
+			score++;
+			updateScore();
+		}
+	}
+}
+
+void hardmode()
+{
+	carPos = -1 + WIN_WIDTH/2;
+	score = 0;
+	deathcount = 0;
+	enemyFlag[0] = 1; /*1*/
+	enemyFlag[1] = 0; /*0*/
+	enemyY[0] = enemyY[1] = 10; /*1*/
+	  
+	system("cls"); 
+	drawBorder(); 
+	updateScore();
+	hardupdateDead();
+	genEnemy(0);
+	genEnemy(1);
+	
+	gotoxy(WIN_WIDTH + 7, 3);cout<<" Go Kart ";
+	gotoxy(WIN_WIDTH + 6, 4);cout<<"----------";
+	gotoxy(WIN_WIDTH + 6, 7);cout<<"----------";
+	gotoxy(WIN_WIDTH + 7, 12);cout<<"Control ";
+	gotoxy(WIN_WIDTH + 7, 13);cout<<"-------- ";
+	gotoxy(WIN_WIDTH + 2, 14);cout<<" A Key - Left";
+	gotoxy(WIN_WIDTH + 2, 15);cout<<" D Key - Right";
+	gotoxy(WIN_WIDTH + 9, 17);cout<<" OR ";
+	gotoxy(WIN_WIDTH + 2, 19);cout<<" 4 NumKey - Left";
+	gotoxy(WIN_WIDTH + 2, 20);cout<<" 6 NumKey - Right"; 
+	
+	gotoxy(18, 5);cout<<"Press any key to start";
+	getch();
+	gotoxy(18, 5);cout<<"                      ";
+	
+	while(1){
+		if(kbhit()){
+			char ch = getch();
+			if( ch=='a' || ch=='A' || ch=='4'){
+				if( carPos > 18 )
+					carPos -= 4;
+			}
+			if( ch=='d' || ch=='D' || ch=='6' ){
+				if( carPos < 50 )
+					carPos += 4;
+			} 
+			if(ch==27){
+				break;
+			}
+		} 
+		
+		drawCar(); 
+		drawEnemy(0); 
+		drawEnemy(1); 
+		if( collision() == 1  ){
+			deathcount++;
+			hardupdateDead();
+			if (deathcount >= 1){
+				gameover();
+				return;
+			}
+		} 
+		if( updateScore() == 120)
+		{
+			gamewin();
+			return;
+		} 
+		Sleep(20); /*50*/
+		eraseCar();
+		eraseEnemy(0);
+		eraseEnemy(1);   
+		
+		if( enemyY[0] == 10 )
+			if( enemyFlag[1] == 0 )
+				enemyFlag[1] = 1;
+		
+		if( enemyFlag[0] == 1 )
+			enemyY[0] += 1;
+		
+		if( enemyFlag[1] == 1 )
+			enemyY[1] += 1; /*1*/
+		 
+		if( enemyY[0] > SCREEN_HEIGHT-4 ){ 
+			resetEnemy(0);
+			score++;
+			updateScore();
+		}
+		if( enemyY[1] > SCREEN_HEIGHT-4 ){ 
+			resetEnemy(1);  
+			score++;
+			updateScore();
+		}
+	}
+}
+
+int gamemode(){
+	setcursor(0,0); 
+	srand( (unsigned)time(NULL)); 
+	 
+	do{
+		system("cls");
+		gotoxy(10,5); cout<<" -------------------------- "; 
+		gotoxy(10,6); cout<<" |        Game Mode       | "; 
+		gotoxy(10,7); cout<<" --------------------------";
+		gotoxy(10,9); cout<<"1. Easy Mode";
+		gotoxy(10,10); cout<<"2. Normal Mode";	 
+		gotoxy(10,11); cout<<"3. Hard Mode";
+		gotoxy(10,12); cout<<"4. How to play";
+		gotoxy(10,13); cout<<"5. Quit";
+		gotoxy(10,16); cout<<"Select option: ";
+		char op = getche();
+		
+		if( op=='1') easymode();
+		else if( op=='2') normalmode();
+		else if( op=='3') hardmode();
+		else if( op=='4') gameinstructions();
+		else if( op=='5') exit(0);
+		
+	}while(1);
+	
+	return 0;
 }
 
 int main()
