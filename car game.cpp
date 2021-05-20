@@ -495,7 +495,7 @@ int main()
 		gotoxy(10,13); cout<<"Select option: ";
 		char op = getche();
 		
-		if( op=='1') play();
+		if( op=='1') gamemode();
 		else if( op=='2') instructions();
 		else if( op=='3') exit(0);
 		
