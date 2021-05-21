@@ -113,7 +113,7 @@ void gamewin(){
 	cout<<"\n\n\n\t\t\t\t--------------------------"<<endl;
 	cout<<"\t\t\t\t--------- You Win --------"<<endl;
 	cout<<"\t\t\t\t--------------------------"<<endl<<endl;
-	cout<<"\t\t\t\t----- congratulations "<<score<<" ----"<<endl;
+	cout<<"\t\t\t\t-- congratulations "<<score<<" ---"<<endl;
 	cout<<"\t\t\t\t--------------------------"<<endl<<endl;
 	cout<<"\t\t\t\tPress any key to go back to menu.";
 	getch();
