@@ -18,6 +18,19 @@ body {
   margin: 0;
 }
 
+.page {
+	display:none;
+}
+
+.preload {
+	margin:0;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-right: -50%;
+	transform:translate(-50%, -50%);
+}
+
 #page1{
   padding-top: 1em;
   background-image: url("firstpageBG.JPG") ;
@@ -29,6 +42,30 @@ body {
 
 #page3{
   background-color: var(--white);
+}
+.boxv{
+  position: relative;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.vdo-box{
+  position: absolute;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  top: 10%;
+  left: 12.5%;
+  width: 75%;
+  height: 75%;
+}
+
+.vdo-box iframe{
+  margin: 0 auto;
+	border: 5px solid var(--black);
+  border-radius: 2%;
+  -webkit-box-shadow: 1px 1px 22px 4px rgba(62,62,62,0.41);
 }
 
 article,
@@ -459,13 +496,13 @@ nav#dot-nav.red a:first-child {
   position: absolute;
   width: 20px;
   height: 20px;
-  color:rgba(206, 206, 206, 0.527);
+  color:rgba(129, 126, 138, 0.527);
   background-color: transparent;
   bottom: -1555px;
   right: 70px;
 }
 .goupbtn :hover{
-  color:rgba(214, 214, 214, 0.842);
+  color:rgba(88, 69, 134, 0.527);
 }
 
 /* section3 */
