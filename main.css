@@ -118,6 +118,7 @@ h1 {
   position: relative;
   color: var(--orange);
   font-size: 2.5em;
+  font-weight: 500;
 }
 .about a{
   transition: .2s linear;
@@ -459,6 +460,7 @@ nav#dot-nav.red a:first-child {
 	line-height:1.6;
 	font-size:14px;
 	margin-bottom:0;
+  font-weight: 400;
   }
 
 .footer-dark ul a {
@@ -466,6 +468,7 @@ nav#dot-nav.red a:first-child {
 	text-decoration:none;
   color: var(--white);
 	opacity: 0.75;
+  font-weight: 400;
   }
 
 .footer-dark ul a:hover {
